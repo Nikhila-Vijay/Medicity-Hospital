@@ -1,0 +1,54 @@
+.appDiv{
+    margin-top: 80px;
+    font-weight: 500;
+    font-size: 30px;
+    margin-left: 290px;
+}
+
+.myForm{
+     background: rgb(157, 247, 157);
+     border-radius: 20%;
+    padding: 20px;
+    width: 75%;
+    margin-left: 180px;
+    margin-top: 20px;
+}
+
+.appDiv1, .appDiv2{
+    margin-top: 20px;
+    padding: 20px;
+    margin-left: 100px;
+}
+
+.appDiv2{
+  margin-top: 5px;
+}
+
+.appDiv3{
+    margin-top: 20px;
+    margin-left: 120px;
+    width: 450px;
+}
+
+.myInput{
+    height: 50px;
+    width: 240px;
+    margin-right: 70px;
+}
+
+
+.appButton{
+    background: rgb(156, 205, 245);
+    height: 50px;
+    width: 200px;
+    border-radius: 50px;
+    border: none;
+    margin-top: 30px;
+    margin-left: 300px;
+
+}
+
+.appButton:hover{
+    background: rgb(141, 247, 141);
+
+}

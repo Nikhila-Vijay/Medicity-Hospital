@@ -1,0 +1,29 @@
+
+
+  
+ .image-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr; /* Two equal columns */
+    gap: 10px; /* Space between the images */
+    
+  }
+
+  .dept {
+    background: rgb(134, 133, 219);
+     width:300px;
+     height: 50px;
+     text-align: center;
+     padding: 5px;
+     font-size: 25px;
+     font-weight: 500;
+     cursor: pointer;
+     border-top-left-radius: 50%;
+     border-bottom-right-radius: 50%;
+      
+  }
+  
+ .dept:hover{
+    color: white;
+    background: rgb(79, 56, 211);
+    transform: scale(1.1);
+ }

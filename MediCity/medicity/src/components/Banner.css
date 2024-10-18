@@ -1,0 +1,63 @@
+.bannerdiv{
+    background: cadetblue;
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-bottom: 100px;
+    height: 350px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10%;
+
+}
+
+
+.bannerdiv1{
+
+    padding-top: 100px;
+    margin-left: 90px;
+    margin-bottom: 100px;
+
+}
+
+.p1{
+    text-shadow: 10px;
+    font-weight: bolder;
+    font-size: 40px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+
+.p2{
+      font-size: 25px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin-bottom: 40px;
+}        
+
+.imageDiv{
+    padding-bottom: 149px;
+}
+
+.bannerImage{
+    height: 500px;
+    width: 250px;
+    
+   
+}
+
+.button1{
+    background-color: rgb(7, 72, 102);
+    color: white;
+    border-radius: 10%;
+    outline: none;
+    height: 50px;
+    width: 300px;
+    margin-left: 70px;
+}
+
+.button1:hover, .button1:focus{
+    background-color: white;
+    color: rgb(7, 72, 102);
+    transform:  scale(1.1);
+    border-color: #0d6efd; 
+    box-shadow: 0 8px 20px rgba(13, 110, 253, 0.6); 
+}

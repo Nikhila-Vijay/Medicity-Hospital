@@ -1,0 +1,35 @@
+/* MessageForm.css */
+.form-card {
+    border: 1px solid #dee2e6; /* Light gray border */
+    background-color: #f8f9fa; /* Light background */
+  }
+  
+  .custom-input {
+    border-radius: 8px;
+    border: 1px solid #ced4da; /* Default border */
+    padding: 10px;
+  }
+  
+  .custom-input:focus {
+    border-color: #007bff; /* Blue border on focus */
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Focus outline */
+  }
+  
+ 
+  .form-card h2 {
+    font-weight: 600;
+    color: #343a40;
+  }
+  
+  /* Add some padding and margin for a clean look */
+  .mt-5 {
+    margin-top: 3rem !important;
+  }
+  
+  .custom-button:hover{
+    background-color: green;
+  }
+  .shadow-sm {
+    box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important;
+  }
+  
