@@ -34,7 +34,7 @@ function GeneralDept() {
                    
                 </div>              */}
 
-<div className="ms-5 superDiv">
+<div className="ms-5 superDiv mt-2">
       {chunkedArray.map((row, rowIndex) => (
         <div className="d-flex justify-content-center mb-5" key={rowIndex}>
           {row.map((item, index) => (

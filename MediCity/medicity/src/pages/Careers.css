@@ -1,0 +1,40 @@
+.cardDiv{
+    margin-top: 50px;
+    margin-left: 200px;
+    width: 60rem;;
+    
+    
+}
+
+.cDiv{
+    margin-bottom: 50px;
+    border: 2px solid rgb(5, 0, 5);
+    border-radius: 40px;
+
+}
+
+.divP{
+
+    font-size: 60px;
+    margin-top: 40px;
+    background: rgb(172, 98, 201);
+    color: white;
+    height: 100px;
+    text-align: center;
+    padding: 10px;
+}
+
+.btnCard{
+    width : 150px;
+    height: 40px;
+    
+    margin-left: 700px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+
+}
+
+.btnCard:hover{
+    color: blue;
+    background: rgb(116, 235, 116);
+}       

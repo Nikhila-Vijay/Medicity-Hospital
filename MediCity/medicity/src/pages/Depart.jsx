@@ -43,8 +43,8 @@ function Depart() {
                  <p onClick={()=> speciality === 'Neurology' ? navigate('/departments') : navigate('/departments/Neurology')} className='dept'>Neurology</p>
                  <p onClick={()=> speciality === 'NeuroSurgery' ? navigate('/departments') : navigate('/departments/NeuroSurgery')} className='dept'>NeuroSurgery</p>
                  <p onClick={()=> speciality === 'Nephrology' ? navigate('/departments') : navigate('/departments/Nephrology')} className='dept'>Nephrology</p>
-                 <p onClick={()=> speciality === 'Pediatrics' ? navigate('/departments') : navigate('/departments/Pediatrics')} className='dept'>Pediatrics</p>
-                 <p onClick={()=> speciality === 'Gynecology' ? navigate('/departments') : navigate('/departments/Gynecology')} className='dept'>Gynecology</p>
+                 <p onClick={()=> speciality === 'Paediatrics' ? navigate('/departments') : navigate('/departments/Paediatrics')} className='dept'>Paediatrics</p>
+                 <p onClick={()=> speciality === 'Gyneacology' ? navigate('/departments') : navigate('/departments/Gyneacology')} className='dept'>Gynecology</p>
                  <p onClick={()=> speciality ===  'Oncology' ? navigate('/departments') : navigate('/departments/Oncology')} className='dept'>Oncology</p>
                  <p onClick={()=> speciality === 'Neonatology' ? navigate('/departments') : navigate('/departments/Neonatology')} className='dept'>Neonatology</p>
                  <p onClick={()=> speciality === 'Gastroenterology' ? navigate('/departments') : navigate('/departments/Gastroenterology')} className='dept'>Gastroenterology</p>
@@ -62,9 +62,10 @@ function Depart() {
            <div className="image-grid p-3">
                  {
                     filterDr.map((item,index) => (
-                        <Card style={{ width: '10rem',  cursor: 'pointer' }} className='ms-4 mb-5'>
+                        <Card key={index} style={{ width: '10rem',  cursor: 'pointer' }} className='ms-4 mb-5'>
                         <Card.Img variant="top" src={item.image} height={'250px'}/>
                         <Card.Body>
+                           <Card.Subtitle className='d-flex align-items-center'><p className={`${item.availability ? 'bg-success': 'bg-gray'} rounded-circle `} style={{ width: '10px', height: '10px' }}></p><p style={{ color: 'green' }}>{item.availability ? 'Available' : 'Not Available' } </p></Card.Subtitle>
                            <Card.Title>{item.name}</Card.Title>
                            <Card.Text>{item.speciality}</Card.Text>
                            <Button onClick={()=> navigate(`/book-an-appointment/${item._id}`)} variant="primary">Know More</Button>

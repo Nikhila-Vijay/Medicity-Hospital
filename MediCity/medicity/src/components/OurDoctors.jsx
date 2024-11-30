@@ -22,6 +22,8 @@ function OurDoctors() {
               <Card key={index}  style={{ width: '15rem', cursor: 'pointer' }} className='ms-4'>
               <Card.Img variant="top" src={item.image} height={'250px'}/>
               <Card.Body>
+                
+                 <Card.Subtitle className='d-flex align-items-center'><p className={`${item.availability ? 'bg-success': 'bg-gray'} rounded-circle `} style={{ width: '10px', height: '10px' }}></p><p style={{ color: 'green' }}>{item.availability ? 'Available' : 'Not Available' } </p></Card.Subtitle>
                  <Card.Title>{item.name}</Card.Title>
                  <Card.Text>{item.speciality}</Card.Text>
                  <Button onClick={()=> navigate(`./book-an-appointment/${item._id} `)} variant="primary">Know More</Button>
@@ -35,6 +37,7 @@ function OurDoctors() {
               <Card key={index}  style={{ width: '15rem',cursor: 'pointer' }} className='ms-4 mb-5'>
               <Card.Img variant="top" src={item.image} height={'250px'}/>
               <Card.Body>
+                 <Card.Subtitle className='d-flex align-items-center'><p className={`${item.availability ? 'bg-success': 'bg-gray'} rounded-circle `} style={{ width: '10px', height: '10px' }}></p><p style={{ color: 'green' }}>{item.availability ? 'Available' : 'Not Available' } </p></Card.Subtitle>
                  <Card.Title>{item.name}</Card.Title>
                  <Card.Text>{item.speciality}</Card.Text>
                  <Button onClick={()=> navigate(`./book-an-appointment/${item._id}`)} variant="primary">Know More</Button>
@@ -48,4 +51,4 @@ function OurDoctors() {
   )
 }
 
-export default OurDoctors
+export default OurDoctors;

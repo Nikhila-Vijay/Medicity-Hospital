@@ -10,17 +10,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 .deptImage, .dImage{
     transition: transform 0.4s ease, box-shadow 0.4s ease;
     border: 2px solid transparent; /* Start with no visible border */

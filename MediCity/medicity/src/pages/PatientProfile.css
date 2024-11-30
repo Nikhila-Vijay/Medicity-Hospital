@@ -1,11 +1,15 @@
 .patientDiv{
+    
     margin-top: 70px;
     margin-left: 100px;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
-
+.preDiv{
+    margin-right: 25px;
+    margin-top: -32px;
+}
 .contactDiv, .basicDiv{
     margin-left: 100px;
     background: rgb(222, 180, 241);
@@ -84,7 +88,12 @@
     margin-top: 50px;
     margin-left: 100px;
     border: 2px solid;
+    
 }
 
 
 
+.newImage{
+    margin-top: -200px;
+    margin-left: 150px;
+}

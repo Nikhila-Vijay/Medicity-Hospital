@@ -7,6 +7,7 @@ function Departments() {
   return (
     <div>
          <SuperSpeciality/>
+         <br />
          <GeneralDept/>
     </div>
   )

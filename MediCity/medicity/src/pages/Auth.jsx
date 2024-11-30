@@ -1,71 +1,84 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Col, Row } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
 import { loginApi, registerApi } from '../services/allApi';
 import { ToastContainer, toast } from 'react-toastify';
 import login from '../assets/patient.jpeg'
 import 'react-toastify/dist/ReactToastify.css';
+import { AppContext } from '../context/AppContext';
+import axios from 'axios';
 
 function Auth({ register }) {
     const registerForm = register ? true : false;
+
+    const {backendUrl, token, setToken} = useContext(AppContext)
     // useNavigate() hook is used to redirect to a particular path
     const navigate = useNavigate()
-    const [userData, setUSerData] = useState({
-        username: "",
+    const [userData, setUserData] = useState({
+        name: "",
         email: "",
         password: ""
     })
     const handleRegister = async (e) => {
         e.preventDefault();
-        const { username, email, password } = userData;
-        if (!username || !email || !password) {
+    try{
+        const { name, email, password } = userData;
+        if (!name || !email || !password) {
             toast.warning("Please fill the form completely")
+            console.log(userData);
+            
         }
         else {
-            const result = await registerApi(userData)
-            console.log(result)
-            if (result.status === 201) {
+            const {data} = await axios.post(backendUrl + '/api/user/register',userData)
+            console.log(data.message)
+            if (data.success) {
+                localStorage.setItem('token', data.token)
+                setToken(data.token)
                 // toastify implement
-                setUSerData({
-                    username: "",
+                setUserData({
+                    name: "",
                     email: "",
                     password: ""
                 })
-                toast.success(`${username} registered successfully`)
+                toast.success(`${name} registered successfully`)
                 // navigate to login page on successfull user registration
                 navigate('/login')
             }
-            else if (result.status == 400) {
-                toast.error(result.response.data)
+            else if (data.status == 400) {
+                toast.error(data.message)
             }
             else {
                 toast.error("Something happened")
             }
-
         }
+        
+    }catch (error){
+        toast.error(error.message)
+    }
+
     }
     const handleLogin = async (e) => {
         e.preventDefault();
+    try{
         const { email, password } = userData;
         if (!email || !password) {
             toast.warning("Please fill the form completely")
         }
         else {
-            const result = await loginApi(userData);
-            console.log("login result");
-            console.log(result)
-            if (result.status === 200) {
-                sessionStorage.setItem("loggedUser", JSON.stringify(result.data.data));
-                sessionStorage.setItem('token', result.data.token);
-                setUSerData({
-                    username: "",
+            const {data} = await axios.post(backendUrl + '/api/user/login',userData);
+            
+            if (data.success) {
+                localStorage.setItem('token', data.token)
+                setToken(data.token)
+                setUserData({
+                   
                     email: "",
                     password: ""
                 })
                 toast.success('Logged in successfully')
                 navigate('/')
             }
-            else if (result.status === 401) {
+            else if (data.status === 401) {
                 toast.error("Invalid Email or password")
             }
             else {
@@ -73,6 +86,9 @@ function Auth({ register }) {
             }
 
         }
+    }catch(error){
+        toast.error(error.message)
+    }
     }
     return (
         <>
@@ -99,8 +115,8 @@ function Auth({ register }) {
                                         <>
                                             <h6 className='text-center mb-3 mt-3'>Create Your Account</h6>
                                             <input type="text" name="" id="" placeholder='Name' className='form-control rounded'
-                                                value={userData.username}
-                                                onChange={(e) => setUSerData({ ...userData, username: e.target.value })}
+                                                value={userData.name}
+                                                onChange={(e) => setUserData({ ...userData, name: e.target.value })}
                                             />
                                         </>
 
@@ -110,13 +126,13 @@ function Auth({ register }) {
                                     <div className='mb-3 mt-3'>
                                         <input type="text" placeholder='Email Id' className='form-control rounded'
                                             value={userData.email}
-                                            onChange={(e) => setUSerData({ ...userData, email: e.target.value })}
+                                            onChange={(e) => setUserData({ ...userData, email: e.target.value })}
                                         />
                                     </div>
                                     <div className='mb-3'>
                                         <input type="password" placeholder='password' className='form-control rounded'
                                             value={userData.password}
-                                            onChange={(e) => setUSerData({ ...userData, password: e.target.value })}
+                                            onChange={(e) => setUserData({ ...userData, password: e.target.value })}
                                         />
                                     </div>
                                     {registerForm ?

@@ -14,6 +14,12 @@ import PatientAppointment from './pages/PatientAppointment'
 import Navbars from './components/Navbars'
 import Depart from './pages/Depart'
 import Booking from './pages/Booking'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Careers from './pages/Careers'
+import Testimonials from './pages/Testimonials'
+import Gallery from './components/Gallery'
+
 
 
 function App() {
@@ -21,6 +27,7 @@ function App() {
 
   return (
     <>
+       <ToastContainer/>
        <Header/>
        <Navbars/>
         <Routes>
@@ -36,7 +43,10 @@ function App() {
              <Route path='/book-an-appointment/:doctorId' element={<BookAppointment/>} />
              <Route path='/patient-profile' element={<PatientProfile/>} />
              <Route path='/patient-appointment' element={<PatientAppointment/>} />
-             <Route path='/' element={<Home/>} />
+             <Route path='/careers' element={<Careers/>} />
+             <Route path='/testimonials' element={<Testimonials/>} />
+             <Route path='/gallery' element={<Gallery/>} />
+             
         </Routes>
         <Footer/>
     </>

@@ -14,7 +14,7 @@ function Banner() {
                 <p className='p1'>A trusted place for quality healthcare</p>
                 <p className='p2'>Where expertise and empathy come together.</p>
              </div>
-             <button className='button1' onClick={()=>navigate('/book-an-appointment')}>BOOK AN APPOINTMENT</button>
+             <button className='button1' onClick={()=>navigate('/departments')}>BOOK AN APPOINTMENT</button>
         </div>
 
         <div className='imageDiv'>

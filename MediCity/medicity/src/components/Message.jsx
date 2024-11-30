@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import './Message.css'
+import axios from 'axios'
+import { useContext } from 'react';
+import { AppContext } from '../context/AppContext';
+import { toast } from 'react-toastify';
 
 
 function Message() {
@@ -9,11 +13,32 @@ function Message() {
   const [phone, setPhone] = useState('');
   const [message, setMessage] = useState('');
 
-  const sendMessage =  (e) => {
+  const {backendUrl} = useContext(AppContext)
+
+  const sendMessage = async (e) => {
     e.preventDefault();
     
-    console.log({ firstName, lastName, email, phone, message });
-    
+    try {
+       
+      const {data} =  await axios.post(backendUrl + '/api/user/messages', { firstName, lastName, email, phone, message })
+
+      console.log(data.message)
+      if(data.success){
+         toast.success(data.message)
+         setFirstName('');
+         setLastName('');
+         setEmail('');
+         setPhone('');
+         setMessage('');
+      }
+      else {
+          toast.error(data.message)
+      }
+    } catch (error) {
+         console.error("Error sending message:", error)
+         toast.error("There was an issue sending your message. Please try again later.")
+         
+    }
   }
 
   return (

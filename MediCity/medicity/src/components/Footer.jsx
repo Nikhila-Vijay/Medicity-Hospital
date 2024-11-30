@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import medicity from '../assets/medicity.png'
 
 export default function Footer() {
+
+  
   return (
     <div className='bg-dark mt-5 d-flex justify-content-center align-items-center p-3'>
         
@@ -37,8 +39,8 @@ export default function Footer() {
         <div className='ms-5'>
           <h4 style={{color:'white'}}>Let's Stay In Touch...</h4>
           <div className='d-flex'>
-            <input type="text" className='form-control' placeholder='Enter your email Id' />
-            <button className='btn btn-warning ms-2'>SUBSCRIBE</button>
+            <input type="email" className='form-control' placeholder='Enter your email Id' />
+            <button  className='btn btn-warning ms-2'>SUBSCRIBE</button>
           </div>
           <div>
             <h4 style={{color:'white'}} className='mt-5'>Follow us on...</h4>

@@ -54,3 +54,21 @@
     background: rgb(211, 51, 12);
     border: none;
 }
+
+.myDivBtn3 {
+    margin-top: 150px;
+    margin-left: 150px;
+    color: red;
+    font-size: 20px;
+    border: none;
+    background: transparent;
+}
+
+.myDivBtn4  {
+    margin-top: 150px;
+    margin-left: 150px;
+    color: green;
+    font-size: 20px;
+    border: none;
+    background: transparent;
+}

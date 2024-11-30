@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { AppContext } from '../context/AppContext';
 import './Book.css'
+import { toast } from 'react-toastify';
+ import axios from 'axios';
 
 
 function BookAppointment() {
@@ -11,7 +13,7 @@ function BookAppointment() {
   const days = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']
 
   const {doctorId} = useParams();
-  const {doctors} = useContext(AppContext)
+  const {doctors, backendUrl, token, getDoctorsData} = useContext(AppContext)
 
   const [docInfo, setDocInfo] = useState(null)
   const [docSlot, setDocSlot] = useState([]);
@@ -22,6 +24,7 @@ function BookAppointment() {
   const doctorInfo = async ()=>{
     const docInfo = doctors.find(doctor => doctor._id === doctorId)
     setDocInfo(docInfo)
+
   }
 //console.log(docInfo);
 
@@ -58,13 +61,25 @@ function BookAppointment() {
                      let formattedTime = currentDate.toLocaleTimeString([], {hour: '2-digit' , minute: '2-digit'})
 
 
-                      //add slot to array
+                     let day = currentDate.getDate()
+                     let month = currentDate.getMonth()+1
+                     let year = currentDate.getFullYear()
 
-                      timeSlots.push({
-                        datetime : new Date(currentDate),
-                        time: formattedTime
-                      })
-                     
+                     const slotDate = day + "-" + month + "-" + year
+                     const slotTime = formattedTime
+           
+                     const isSlotAvilable = docInfo.slots_booked[slotDate] && docInfo.slots_booked[slotDate].includes(slotTime) ? false : true
+
+
+                     if (isSlotAvilable){
+
+                    //add slot to array
+                         timeSlots.push({
+                         datetime : new Date(currentDate),
+                         time: formattedTime
+                       })
+
+                     } 
 
                       //increment current time by 30 minutes
 
@@ -74,6 +89,46 @@ function BookAppointment() {
 
                 setDocSlot(prev => ([...prev, timeSlots]))
            }
+   }
+
+   const bookAppointment = async () => {
+      if(!token) {
+         toast.warn('Please Login to Book Appointment...!')
+         return navigate('/login')
+      }
+
+      try{
+          const date = docSlot[slotIndex][0].datetime
+
+          let day = date.getDate()
+          let month = date.getMonth()+1
+          let year = date.getFullYear()
+
+          const slotDate = day + "-" + month + "-" + year
+
+          console.log(slotDate);
+
+          const {data} = await axios.post(backendUrl + '/api/user/book-appointment', {doctorId, slotDate, slotTime}, {headers: {token}})
+
+          if(data.success) {
+               toast.success(data.message)
+               console.log(data.message);
+               
+               getDoctorsData()
+               navigate('/patient-appointment')
+          }
+          else {
+               toast.error(data.message)
+
+               
+          }
+
+      }
+      catch(error){
+            console.log(error)
+            toast.error(error.message)
+            
+      }
    }
 
   useEffect(()=> {
@@ -93,13 +148,15 @@ function BookAppointment() {
     <div>
       
          <div>
+               <div >
+                       <p className='p1'>{docInfo.name}</p>
+                   </div>
          
           <div className='d-flex'>
               <div className='imgP '>
+                   
                    <img  src={docInfo.image} alt="" className='bookDr' />
-                    <div>
-                   <p className='p1'>{docInfo.name}</p>
-                   </div>
+                   
               </div>
               <div>
                    <p className='bookingDiv'>
@@ -125,16 +182,18 @@ function BookAppointment() {
                       ))}
                       
                    </div>
-                   <button onClick={()=> navigate('/book-an-appointment')}  className='bookingButton'>Book An Appointment</button>
+                   <button onClick={bookAppointment}  className='bookingButton'>Book An Appointment</button>
               </div>
           </div>
 
               <div className='detailsDiv'>
                    
                    <div className='detailsDiv1'>
-                       <p className='specialityP'>{docInfo.degree}-{docInfo.speciality}</p>
-                       <button className='expButton'>{docInfo.experience}</button>
+                       <p className='specialityP'>Qualification : {docInfo.degree}</p>
+                       <p className='specialityP'>Department : {docInfo.speciality}</p>
+                       <button className='expButton'>Experience : {docInfo.experience}</button>
                    </div>
+                   <br />
                    
                    <div className='feeDiv'>
                        <p>Appointment Fee : <span className='spanClass'> Rs.{docInfo.fees}</span></p>
@@ -154,4 +213,5 @@ function BookAppointment() {
   )
 }
 
-export default BookAppointment
+
+export default BookAppointment;
